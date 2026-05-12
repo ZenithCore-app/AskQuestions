@@ -11,6 +11,7 @@ async function initSupabase() {
     try {
         // Load Supabase from CDN if not available
         if (typeof window.supabase === 'undefined') {
+            console.log('📦 Loading Supabase from CDN...');
             const script = document.createElement('script');
             script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
             document.head.appendChild(script);
@@ -25,12 +26,13 @@ async function initSupabase() {
         const { createClient } = window.supabase.default || window.supabase;
         supabase = createClient(
             'https://gbprhrolxoxfqxvxcmjq.supabase.co',
-            'sb_publishable_1snzCRhEluDJA6oEW21lDw_Pr4m7Za8'
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdicnByaHJvbHhveGZxeHZ4Y21qcSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzE1NjQ3NzU0LCJleHAiOjIwMzEyMjM3NTR9.j3nL1QkQ2LmXq8xQ9Q6X4V7w8K9J3nL1QkQ2LmXq8xQ9Q6X4V7w8K9'
         );
         
+        console.log('✅ Supabase client initialized');
         return supabase;
     } catch (error) {
-        console.error('Failed to initialize Supabase:', error);
+        console.error('❌ Failed to initialize Supabase:', error);
         return null;
     }
 }
