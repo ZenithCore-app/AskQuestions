@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Search Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+
+    <main class="main">
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Ask Anything
+                    <span class="gradient-text">Get Answers</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Submit your questions and get them answered anonymously
+                </p>
+                
+                <div class="question-container">
+                    <div class="question-box">
+                        <div class="question-input-wrapper">
+                            <i class="fas fa-question-circle question-icon"></i>
+                            <textarea 
+                                id="questionInput" 
+                                class="question-input" 
+                                placeholder="What would you like to ask?"
+                                rows="3"
+                            ></textarea>
+                            <button id="clearBtn" class="clear-btn" aria-label="Clear question">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <button id="submitBtn" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Question
+                        </button>
+                    </div>
+                </div>
+
+            
+            <div class="hero-graphics">
+                <div class="floating-card card-1">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="confirmation-section" id="confirmation" style="display: none;">
+            <div class="container">
+                <div class="confirmation-message">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Question Submitted Successfully!</h2>
+                    <p>Your question has been submitted.</p>
+                    <button id="askAnotherBtn" class="ask-another-btn">
+                        <i class="fas fa-plus"></i>
+                        Ask Another Question
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
