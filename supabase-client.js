@@ -26,7 +26,7 @@ async function initSupabase() {
         const { createClient } = window.supabase.default || window.supabase;
         supabase = createClient(
             'https://gbprhrolxoxfqxvxcmjq.supabase.co',
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdicnByaHJvbHhveGZxeHZ4Y21qcSIsInJvbGUiOiJhbm9uIiwiaWF0IjoxNzE1NjQ3NzU0LCJleHAiOjIwMzEyMjM3NTR9.j3nL1QkQ2LmXq8xQ9Q6X4V7w8K9J3nL1QkQ2LmXq8xQ9Q6X4V7w8K9'
+            'sb_publishable_1snzCRhEluDJA6oEW21lDw_Pr4m7Za8'
         );
         
         console.log('✅ Supabase client initialized');
