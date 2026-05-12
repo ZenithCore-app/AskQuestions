@@ -364,13 +364,14 @@ async function submitQuestion() {
         
         if (discordSuccess) {
             console.log('✅ Discord notification sent');
-            // Show confirmation with database info
-            showConfirmation(shortID, questionData.id);
+            // Show success animation on button
+            showSubmitSuccess();
             clearQuestion();
         } else {
             console.log('⚠️ Discord failed but database saved');
-            showNotification('Question saved to database but Discord notification failed. Your question was still submitted successfully.');
-            showConfirmation(shortID, questionData.id);
+            showNotification('Question submitted successfully!');
+            showSubmitSuccess();
+            clearQuestion();
         }
     } catch (error) {
         console.error('❌ Error submitting question:', error);
@@ -445,35 +446,25 @@ async function sendToDiscord(question, questionId) {
     }
 }
 
-// Show confirmation message
-function showConfirmation(shortID, questionId) {
-    const confirmationContent = confirmationSection.querySelector('.confirmation-message');
-    confirmationContent.innerHTML = `
-        <div class="success-icon">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        <h2>Question Submitted Successfully!</h2>
-        <p>Your question has been saved to our database and sent to Discord.</p>
-        <div class="confirmation-details">
-            <div class="detail-item">
-                <strong>Your User ID:</strong> <code>${shortID}</code>
-            </div>
-            <div class="detail-item">
-                <strong>Question ID:</strong> <code>${questionId}</code>
-            </div>
-        </div>
-        <button id="askAnotherBtn" class="ask-another-btn">
-            <i class="fas fa-plus"></i>
-            Ask Another Question
-        </button>
-    `;
+// Show submit success animation
+function showSubmitSuccess() {
+    submitBtn.classList.add('success');
+    submitBtn.innerHTML = '<i class="fas fa-check"></i> Submitted!';
     
-    // Re-attach event listener to the new button
-    const newAskAnotherBtn = document.getElementById('askAnotherBtn');
-    newAskAnotherBtn.addEventListener('click', askAnotherQuestion);
+    // Add success animation
+    submitBtn.style.transform = 'scale(1.1)';
+    submitBtn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
     
-    confirmationSection.style.display = 'block';
-    confirmationSection.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+        submitBtn.style.transform = 'scale(1)';
+    }, 200);
+    
+    // Reset button after 2 seconds
+    setTimeout(() => {
+        submitBtn.classList.remove('success');
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Question';
+        submitBtn.style.background = '';
+    }, 2000);
 }
 
 // Ask another question
@@ -525,7 +516,7 @@ function animateOnScroll() {
     // No elements to animate since features section was removed
 }
 
-// Add CSS for notification and confirmation details
+// Add CSS for notification and submit button animation
 const additionalCSS = `
 .notification {
     position: fixed;
@@ -551,6 +542,16 @@ const additionalCSS = `
 .notification i {
     color: var(--primary-color);
     font-size: 1.2rem;
+}
+
+.submit-btn.success {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.submit-btn.success:hover {
+    transform: scale(1.15);
 }
 
 .confirmation-details {
